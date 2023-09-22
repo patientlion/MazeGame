@@ -1,5 +1,6 @@
 #include <iostream>
 #include <conio.h>
+#include <fstream>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ constexpr int kDownArrow = 80;
 constexpr int kLeftArrow = 75;
 constexpr int kRightArrow = 77;
 
-constexpr int kEscape = 27;
+constexpr int kEscape = 113;
 
 void GetLevelDimensions(int& width, int& height);
 void DisplayLevel(char* pLevel, int width, int height, int cursorX, int cursorY);
@@ -28,6 +29,7 @@ void DisplayBottomBorder(int width);
 void DisplayLeftBorder();
 void DisplayRightBorder();
 bool EditLevel(char* pLevel, int& cursorX, int& cursorY, int width, int height);
+void SaveLevel(char* pLevel, int width, int height);
 
 int main()
 {
@@ -55,10 +57,44 @@ int main()
 
     system("cls");
     DisplayLevel(pLevel, levelWidth, levelHeight, -1, -1);
+
+    SaveLevel(pLevel, levelWidth, levelHeight);
     
     delete[] pLevel;
     pLevel = nullptr;
 }
+
+void SaveLevel(char* pLevel, int width, int height)
+{
+    cout << "Enter level file name (e.g. Level1.txt): ";
+    string levelName;
+    cin >> levelName;
+
+    levelName.insert(0, "../");
+
+    ofstream levelFile;
+    levelFile.open(levelName);
+    if(!levelFile)
+    {
+        cout << "Error opening file!" << endl;
+    }
+    else
+    {
+        levelFile << width << endl;
+        levelFile << height << endl;
+        levelFile.write(pLevel, width * height);
+        if (!levelFile)
+        {
+            cout << "Error writing to file!" << endl;
+        }
+        else
+        {
+            cout << "Level saved!" << endl;
+        }
+        levelFile.close();
+    }
+}
+
 
 bool EditLevel(char* pLevel, int& cursorX, int& cursorY, int width, int height)
 {
