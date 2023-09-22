@@ -1,5 +1,6 @@
 #include <iostream>
 #include <conio.h>
+#include <windows.h>
 
 using namespace std;
 constexpr char kPlayerSymbol = '@';
@@ -7,10 +8,17 @@ constexpr char WAL = 219;
 constexpr char KEY = 232;
 constexpr char DOR = 179;
 constexpr char GOL = 36;
+constexpr int kOpenDoorColour = 10;
+constexpr int kClosedDoorColour = 12;
+constexpr int kRegularColour = 7;
 
 int GetIndexFromCoordinates(int x, int y, int width);
-void DrawLevel(char level[], int width, int height, int playerX, int playerY);
+void DrawLevel(char level[], int width, int height, int playerX, int playerY, bool playerHasKey);
 bool UpdatePlayerPosition(char level[], int& playerX, int& playerY, int width, bool& playerHasKey);
+void PlayDoorCloseSound();
+void PlayDoorOpenSound();
+void PlayKeyPickupSound();
+void PlayWinSound();
 
 int main()
 {
@@ -44,12 +52,13 @@ int main()
     while (!gameOver)
     {
         system("cls");
-        DrawLevel(levelArray, kWidth, kHeight, playerX, playerY);
+        DrawLevel(levelArray, kWidth, kHeight, playerX, playerY, playerHasKey);
         gameOver = UpdatePlayerPosition(levelArray, playerX, playerY, kWidth, playerHasKey);
     }
     system("cls");
-    DrawLevel(levelArray, kWidth, kHeight, playerX, playerY);
+    DrawLevel(levelArray, kWidth, kHeight, playerX, playerY, playerHasKey);
     cout << "You win!" << endl;
+    PlayWinSound();
 }
 
 int GetIndexFromCoordinates(int x, int y, int width)
@@ -57,7 +66,7 @@ int GetIndexFromCoordinates(int x, int y, int width)
     return x + y * width;
 }
 
-void DrawLevel(char level[], int width, int height, int playerX, int playerY)
+void DrawLevel(char level[], int width, int height, int playerX, int playerY, bool playerHasKey)
 {
     for (int y = 0; y < height; y++)
     {
@@ -69,7 +78,24 @@ void DrawLevel(char level[], int width, int height, int playerX, int playerY)
             }
             else
             {
-                cout << level[GetIndexFromCoordinates(x, y, width)];
+                int indexToPrint = GetIndexFromCoordinates(x, y, width);
+                HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+                if (level[indexToPrint] == DOR)
+                {
+                    if (playerHasKey)
+                    {
+                        SetConsoleTextAttribute(console, kOpenDoorColour);
+                    }
+                    else
+                    {
+                        SetConsoleTextAttribute(console, kClosedDoorColour);
+                    }
+                }
+                else
+                {
+                    SetConsoleTextAttribute(console, kRegularColour);
+                }
+                cout << level[indexToPrint];
             }
         }
         cout << endl;
@@ -117,6 +143,7 @@ bool UpdatePlayerPosition(char level[], int& playerX, int& playerY, int width, b
         level[index] = ' ';
         playerX = newPlayerX;
         playerY = newPlayerY;
+        PlayKeyPickupSound();
     }
     else if (level[index] == DOR && playerHasKey)
     {
@@ -124,6 +151,11 @@ bool UpdatePlayerPosition(char level[], int& playerX, int& playerY, int width, b
         playerHasKey = false;
         playerX = newPlayerX;
         playerY = newPlayerY;
+        PlayDoorOpenSound();
+    }
+    else if (level[index] == DOR && !playerHasKey)
+    {
+        PlayDoorCloseSound();
     }
     else if (level[index] == GOL)
     {
@@ -133,4 +165,32 @@ bool UpdatePlayerPosition(char level[], int& playerX, int& playerY, int width, b
         return true;
     }
     return false;
+}
+
+void PlayDoorCloseSound()
+{
+    Beep(500, 75);
+    Beep(500, 75);
+}
+
+void PlayDoorOpenSound()
+{
+    Beep(1397, 200);
+}
+
+void PlayKeyPickupSound()
+{
+    Beep(1568, 200);
+}
+
+void PlayWinSound()
+{
+    Beep(1568, 200);
+    Beep(1568, 200);
+    Beep(1568, 200);
+    Beep(1245, 1000);
+    Beep(1397, 200);
+    Beep(1397, 200);
+    Beep(1397, 200);
+    Beep(1175, 1000);
 }
