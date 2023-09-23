@@ -103,6 +103,7 @@ bool Game::Update()
 
 void Game::Draw()
 {
+    system("cls");
     for (int y = 0; y < m_level.GetHeight(); y++)
     {
         for (int x = 0; x < m_level.GetWidth(); x++)
