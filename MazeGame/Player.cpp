@@ -1,42 +1,50 @@
 ﻿#include "Player.h"
 #include <iostream>
+#include "Key.h"
 
 using namespace std;
-constexpr  char kPlayerSymbol = '@';
+
+constexpr int kStartingNumberOfLives = 3;
+
 
 Player::Player()
-    : m_hasKey(false)
-{
-    
-}
-
-Player::~Player()
-{
-    
-}
-
-void Player::SetPosition(int x, int y)
-{
-    m_position.x = x;
-    m_position.y = y;
-}
+    : PlaceableActor(0, 0)
+    , m_pCurrentKey(nullptr)
+    , m_money(0)
+    , m_lives(kStartingNumberOfLives)
+{}
 
 bool Player::HasKey()
 {
-    return m_hasKey;
+    return m_pCurrentKey != nullptr;
 }
 
-void Player::PickUpKey()
+bool Player::HasKey(int colour)
 {
-    m_hasKey = true;
+    return HasKey() && m_pCurrentKey->GetColour() == colour;
+}
+
+void Player::PickUpKey(Key* pKey)
+{
+    m_pCurrentKey = pKey;
 }
 
 void Player::UseKey()
 {
-    m_hasKey = false;
+    m_pCurrentKey->Remove();
+    m_pCurrentKey = nullptr;
+}
+
+void Player::DropKey()
+{
+    if (m_pCurrentKey)
+    {
+        m_pCurrentKey->Place(m_pPosition->x, m_pPosition->y);
+        m_pCurrentKey = nullptr;
+    }
 }
 
 void Player::Draw()
 {
-    cout << kPlayerSymbol;
+    cout << "@";
 }
