@@ -25,8 +25,8 @@ bool ConvertLevel(char* level, int width, int height, int& playerX, int& playerY
 
 int main()
 {
-    int width = 25;
-    int height = 15;
+    int width = 0;
+    int height = 0;
     
     char* levelArray = LoadLevel("Level1.txt", width, height);
     
