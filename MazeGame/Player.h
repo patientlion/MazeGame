@@ -3,7 +3,6 @@
 
 class Player
 {
-private:    
     Point m_position;
     bool m_hasKey;
 public:
@@ -13,6 +12,9 @@ public:
     int GetXPosition() {return m_position.x;}
     int GetYPosition() {return m_position.y;}
 
+    int* GetXPositionPtr() {return &m_position.x;}
+    int* GetYPositionPtr() {return &m_position.y;}
+    
     void SetPosition(int x, int y);
 
     bool HasKey();
