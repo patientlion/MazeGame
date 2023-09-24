@@ -157,9 +157,11 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="MazeGame.cpp" />
+    <ClCompile Include="Money.cpp" />
     <ClCompile Include="PlaceableActor.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Point.cpp" />
@@ -168,8 +170,10 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Goal.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Money.h" />
     <ClInclude Include="PlaceableActor.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Point.h" />
