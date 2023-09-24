@@ -1,5 +1,11 @@
+C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Door.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Door.obj
+C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Enemy.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Enemy.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Game.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Game.obj
+C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Goal.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Goal.obj
+C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Key.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Key.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Level.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Level.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\MazeGame.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\MazeGame.obj
+C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Money.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Money.obj
+C:\dev\cpp\intro-game-programming\10\maze\MazeGame\PlaceableActor.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\PlaceableActor.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Player.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Player.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Point.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Point.obj

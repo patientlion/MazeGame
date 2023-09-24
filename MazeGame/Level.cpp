@@ -138,15 +138,15 @@ bool Level::Convert(int* playerX, int* playerY)
                 break;
             case 'R':
                 m_pLevelData[index] = ' ';
-                m_pActors.push_back(new Key(x, y, kRedSolidColour));
+                m_pActors.push_back(new Key(x, y, kRedColourSolid));
                 break;
             case 'G':
                 m_pLevelData[index] = ' ';
-                m_pActors.push_back(new Key(x, y, kGreenSolidColour));
+                m_pActors.push_back(new Key(x, y, kGreenColourSolid));
                 break;
             case 'B':
                 m_pLevelData[index] = ' ';
-                m_pActors.push_back(new Key(x, y, kBlueSolidColour));
+                m_pActors.push_back(new Key(x, y, kBlueColourSolid));
                 break;
             case 'X':
                 m_pLevelData[index] = ' ';
