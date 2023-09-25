@@ -24,5 +24,5 @@ public:
 
 private:
     bool Load();
-    bool HandleCollision(int newPlayerX, int newPlayerY);
+    void HandleCollision(int newPlayerX, int newPlayerY);
 };

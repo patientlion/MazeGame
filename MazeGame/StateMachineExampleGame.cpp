@@ -54,14 +54,13 @@ void StateMachineExampleGame::ChangeState(GameState* pNewState)
     pNewState->Enter();
 }
 
-bool StateMachineExampleGame::CleanUp()
+void StateMachineExampleGame::CleanUp()
 {
     if (m_pCurrentState)
     {
         m_pCurrentState->Exit();
         delete m_pCurrentState;
     }
-    return true;
 }
 
 void StateMachineExampleGame::LoadScene(SceneName scene)

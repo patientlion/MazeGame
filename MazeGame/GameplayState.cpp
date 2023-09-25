@@ -23,6 +23,7 @@ constexpr int kQuitKey = 113;
 GameplayState::GameplayState(StateMachineExampleGame* pOwner)
     : m_pOwner(pOwner)
     , m_beatGame(false)
+    , m_skipFrameCount(0)
 {
     
 }
@@ -86,22 +87,23 @@ bool GameplayState::Update(bool processInput)
         {
             HandleCollision(newPlayerX, newPlayerY);
         }
+    }
 
-        if (m_beatGame)
+    if (m_beatGame)
+    {
+        ++m_skipFrameCount;
+        if (m_skipFrameCount > kFramesToSkip)
         {
-            ++m_skipFrameCount;
-            if (m_skipFrameCount > kFramesToSkip)
-            {
-                m_skipFrameCount = 0;
-                AudioManager::GetInstance()->PlayWinSound();
-                m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
-            }
+            m_skipFrameCount = 0;
+            AudioManager::GetInstance()->PlayWinSound();
+            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
         }
     }
+    
     return false;
 }
 
-bool GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
+void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
 {
     bool isGameDone = false;
     PlaceableActor* collidedActor = m_level.UpdateActors(newPlayerX, newPlayerY);
@@ -119,7 +121,7 @@ bool GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
                     collidedEnemy->Remove();
                     m_player.SetPosition(newPlayerX, newPlayerY);
                     m_player.DecreaseLives();
-                    if (m_player.GetLives() < 0)
+                    if (m_player.GetLives() <= 0)
                     {
                         AudioManager::GetInstance()->PlayWinSound();
                         m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
@@ -180,6 +182,7 @@ bool GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
                     collidedGoal->Remove();
                     m_player.SetPosition(newPlayerX, newPlayerY);
                     m_beatGame = true;
+                    break;
                 }
             default:
                 break;

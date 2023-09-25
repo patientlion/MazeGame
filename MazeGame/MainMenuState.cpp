@@ -36,6 +36,6 @@ void MainMenuState::Draw()
     system("cls");
     cout << endl << endl << endl;
     cout << "Main Menu" << endl;
-    cout << kPlay << "Press 1 to play" << endl;
-    cout << kQuit << "Press 2 to quit" << endl;
+    cout << kPlay << ".   Play" << endl;
+    cout << kQuit << ".   Quit" << endl;
 }

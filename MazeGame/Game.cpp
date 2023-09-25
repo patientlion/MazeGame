@@ -1,8 +1,5 @@
 ﻿#include "Game.h"
 
-
-
-
 Game::Game()
     : m_pGameStateMachine(nullptr)
 {

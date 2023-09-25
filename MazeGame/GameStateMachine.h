@@ -11,5 +11,5 @@ public:
     virtual bool UpdateCurrentState(bool processInput = true) = 0;
     virtual void DrawCurrentState() = 0;
     virtual void ChangeState(GameState* pNewState) = 0;
-    virtual bool CleanUp() = 0;
+    virtual void CleanUp() = 0;
 };
