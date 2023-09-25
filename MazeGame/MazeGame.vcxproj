@@ -458,6 +458,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="GameplayState.cpp" />
     <ClCompile Include="Goal.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -1073,6 +1074,7 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameplayState.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Goal.h" />
