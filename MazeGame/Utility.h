@@ -9,17 +9,18 @@ using namespace std;
 
 class Utility
 {
-    static set<int> WriteHighScore(int score);
+public:
+    static set<int> WriteHighScore(int score)
     {
         // see if file exists and read the values
         string fileName = "highscores.txt";
         ifstream highscoreFile(fileName);
-        ifstream_iterator<int> start(highscoreFile), end;
+        istream_iterator<int> start(highscoreFile), end;
         set<int> highscores(start, end);
         highscoreFile.close();
         
         // if it's empty, populate and save
-        if (highscore.size() == 0)
+        if (highscores.size() == 0)
         {
             highscores.insert(100);
             highscores.insert(50);

@@ -39,7 +39,7 @@ void SettingsState::Draw()
     system("cls");
     cout << endl << endl << endl;
     cout << "Settings" << endl;
-    cout << kSound << ".   Toggle SOund" << endl;
+    cout << kSound << ".   Toggle Sound" << endl;
     if(AudioManager::GetInstance()->IsSoundOn())
     {
         cout << "Sound is ON" << endl;

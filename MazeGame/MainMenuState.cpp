@@ -7,7 +7,9 @@ using namespace std;
 
 constexpr int kQuitKey = 113;
 constexpr char kPlay = '1';
-constexpr char kQuit = '2';
+constexpr char kHighScore = '2';
+constexpr char kSettings = '3';
+constexpr char kQuit = '4';
 
 MainMenuState::MainMenuState(StateMachineExampleGame* pOwner)
     : m_pOwner(pOwner)
@@ -27,6 +29,14 @@ bool MainMenuState::Update(bool processInput)
         {
             m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Gameplay);
         }
+        else if ((char)input == kHighScore)
+        {
+            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Highscore);
+        }
+        else if ((char)input == kSettings)
+        {
+            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Settings);
+        }
     }
     return shouldQuit;
 }
@@ -37,5 +47,7 @@ void MainMenuState::Draw()
     cout << endl << endl << endl;
     cout << "Main Menu" << endl;
     cout << kPlay << ".   Play" << endl;
+    cout << kHighScore << ".   HighScores" << endl;
+    cout << kSettings << ".   Settings" << endl;
     cout << kQuit << ".   Quit" << endl;
 }
