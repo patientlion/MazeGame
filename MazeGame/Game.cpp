@@ -33,7 +33,7 @@ Game::~Game()
 
 bool Game::Load()
 {
-    return m_level.Load("Level1.txt", m_player.GetXPositionPtr(), m_player.GetYPositionPtr());
+    return m_level.Load("Level2.txt", m_player.GetXPositionPtr(), m_player.GetYPositionPtr());
 }
 
 void Game::Run()
