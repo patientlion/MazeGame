@@ -12,8 +12,6 @@
 
 using namespace std;
 
-constexpr char WAL = (char)219;
-
 Level::Level()
     : m_pLevelData(nullptr)
     , m_width(0)

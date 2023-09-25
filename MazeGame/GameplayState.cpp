@@ -1,6 +1,5 @@
 ﻿#include "GameplayState.h"
 #include <iostream>
-#include <windows.h>
 #include <conio.h>
 #include <assert.h>
 
@@ -219,4 +218,52 @@ void GameplayState::Draw()
     currentCursorPositon.X = 0;
     currentCursorPositon.Y = m_level.GetHeight();
     SetConsoleCursorPosition(console, currentCursorPositon);
+
+    DrawHUD(console);
+}
+
+void GameplayState::DrawHUD(const HANDLE& console)
+{
+    cout << endl;
+    //Top border
+    for (int i = 0; i < m_level.GetWidth(); i++)
+    {
+        cout << Level::WAL;
+    }
+    cout << endl;
+
+    // Left border
+    cout << Level::WAL;
+    
+    cout << " wasd-move" << Level::WAL << "z-drop key" << Level::WAL << "q-quit";
+    cout << " $: " << m_player.GetMoney() << Level::WAL;
+    cout << " lives: " << m_player.GetLives() << Level::WAL;
+    cout << " key: ";
+    if (m_player.HasKey())
+    {
+        m_player.GetKey()->Draw();
+    }
+    else
+    {
+        cout << " ";
+    }
+
+    // Right border
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(console, &csbi);
+
+    COORD pos;
+    pos.X = m_level.GetWidth() - 1;
+    pos.Y = csbi.dwCursorPosition.Y;
+    SetConsoleCursorPosition(console,pos);
+
+    cout << Level::WAL;
+    cout << endl;
+
+    // bottom border
+    for (int i = 0; i < m_level.GetWidth(); i++)
+    {
+        cout << Level::WAL;
+    }
+    cout << endl;
 }

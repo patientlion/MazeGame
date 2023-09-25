@@ -30,6 +30,8 @@ public:
     int GetHeight() {return m_height;}
     int GetWidth() {return m_width;}
 
+    static constexpr char WAL = (char)219;
+
 private:
     bool Convert(int* playerX, int* playerY);
     int GetIndexFromCoordinates(int x, int y);    

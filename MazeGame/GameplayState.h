@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Level.h"
+#include <windows.h>
 
 class StateMachineExampleGame;
 
@@ -25,4 +26,5 @@ public:
 private:
     bool Load();
     void HandleCollision(int newPlayerX, int newPlayerY);
+    void DrawHUD(const HANDLE& console);
 };
