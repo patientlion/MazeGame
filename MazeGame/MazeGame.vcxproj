@@ -687,6 +687,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="MazeGame.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -1080,6 +1081,7 @@
     <ClInclude Include="Goal.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Money.h" />
     <ClInclude Include="PlaceableActor.h" />
     <ClInclude Include="Player.h" />
