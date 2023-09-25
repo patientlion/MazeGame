@@ -20,6 +20,7 @@ public:
     int GetLives() {return m_lives;}
     void DecreaseLives() {m_lives--;}
 
+    virtual ActorType GetType() override {return ActorType::Player;}
     virtual void Draw() override;
     
 private:
