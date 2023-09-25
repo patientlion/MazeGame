@@ -10,7 +10,7 @@
 #include "Key.h"
 #include "Door.h"
 #include "AudioManager.h"
-
+#include "Utility.h"
 #include "StateMachineExampleGame.h"
 
 constexpr int kArrowInput = 224;
@@ -95,8 +95,9 @@ bool GameplayState::Update(bool processInput)
         if (m_skipFrameCount > kFramesToSkip)
         {
             m_skipFrameCount = 0;
+            Utility::WriteHighScore(m_player.GetMoney());
             AudioManager::GetInstance()->PlayWinSound();
-            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
+            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Win);
         }
     }
     
@@ -124,7 +125,7 @@ void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
                     if (m_player.GetLives() <= 0)
                     {
                         AudioManager::GetInstance()->PlayWinSound();
-                        m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
+                        m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Lose);
                     }
                     break;
                 }

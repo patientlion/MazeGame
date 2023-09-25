@@ -7,6 +7,7 @@ C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Goal.cpp;C:\dev\cpp\intro-gam
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\HighScoreState.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\HighScoreState.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Key.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Key.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Level.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Level.obj
+C:\dev\cpp\intro-game-programming\10\maze\MazeGame\LoseState.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\LoseState.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\MainMenuState.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\MainMenuState.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\MazeGame.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\MazeGame.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Money.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Money.obj
@@ -15,3 +16,4 @@ C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Player.cpp;C:\dev\cpp\intro-g
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Point.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\Point.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\SettingsState.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\SettingsState.obj
 C:\dev\cpp\intro-game-programming\10\maze\MazeGame\StateMachineExampleGame.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\StateMachineExampleGame.obj
+C:\dev\cpp\intro-game-programming\10\maze\MazeGame\WinState.cpp;C:\dev\cpp\intro-game-programming\10\maze\MazeGame\Debug\WinState.obj
