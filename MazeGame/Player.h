@@ -9,7 +9,7 @@ public:
     Player();
 
     bool HasKey();
-    bool HasKey(int colour);
+    bool HasKey(ActorColour colour);
     void PickUpKey(Key* Key);
     void UseKey();
     void DropKey();

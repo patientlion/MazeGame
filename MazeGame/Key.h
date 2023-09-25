@@ -4,7 +4,7 @@
 class Key : public PlaceableActor
 {
 public:
-    Key(int x, int y, int colour)
+    Key(int x, int y, ActorColour colour)
         : PlaceableActor(x, y, colour)
     {}
     virtual void Draw() override;

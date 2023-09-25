@@ -1,6 +1,6 @@
 ﻿#include "PlaceableActor.h"
 
-PlaceableActor::PlaceableActor(int x, int y, int colour)
+PlaceableActor::PlaceableActor(int x, int y, ActorColour colour)
     : m_pPosition(new Point(x, y))
     , m_IsActive(true)
     , m_colour(colour)

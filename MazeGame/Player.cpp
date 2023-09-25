@@ -19,7 +19,7 @@ bool Player::HasKey()
     return m_pCurrentKey != nullptr;
 }
 
-bool Player::HasKey(int colour)
+bool Player::HasKey(ActorColour colour)
 {
     return HasKey() && m_pCurrentKey->GetColour() == colour;
 }

@@ -73,7 +73,7 @@ bool Level::Load(string levelName, int* playerX, int* playerY)
 void Level::Draw()
 {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(console, kRegularColour);
+    SetConsoleTextAttribute(console, (int)ActorColour::Regular);
 
     // Draw the level
     for (int y = 0; y < GetHeight(); y++)
@@ -130,23 +130,27 @@ bool Level::Convert(int* playerX, int* playerY)
                 break;
             case 'r':
                 m_pLevelData[index] = ' ';
-                m_pActors.push_back(new Key(x, y, kRedColour));
+                m_pActors.push_back(new Key(x, y, ActorColour::Red));
                 break;
             case 'g':
                 m_pLevelData[index] = ' ';
-                m_pActors.push_back(new Key(x, y, kGreenColour));
+                m_pActors.push_back(new Key(x, y, ActorColour::Green));
+                break;
+            case 'b':
+                m_pLevelData[index] = ' ';
+                m_pActors.push_back(new Key(x, y, ActorColour::Blue));
                 break;
             case 'R':
                 m_pLevelData[index] = ' ';
-                m_pActors.push_back(new Key(x, y, kRedColourSolid));
+                m_pActors.push_back(new Door(x, y, ActorColour::Red, ActorColour::RedSolid));
                 break;
             case 'G':
                 m_pLevelData[index] = ' ';
-                m_pActors.push_back(new Key(x, y, kGreenColourSolid));
+                m_pActors.push_back(new Door(x, y, ActorColour::Green, ActorColour::GreenSolid));
                 break;
             case 'B':
                 m_pLevelData[index] = ' ';
-                m_pActors.push_back(new Key(x, y, kBlueColourSolid));
+                m_pActors.push_back(new Door(x, y, ActorColour::Blue, ActorColour::BlueSolid));
                 break;
             case 'X':
                 m_pLevelData[index] = ' ';
