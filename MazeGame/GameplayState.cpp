@@ -21,15 +21,31 @@ constexpr int kQuitKey = 113;
 
 GameplayState::GameplayState(StateMachineExampleGame* pOwner)
     : m_pOwner(pOwner)
-    , m_beatGame(false)
+    , m_beatLevel(false)
     , m_skipFrameCount(0)
+    , m_currentLevel(0)
+    , m_pLevel(nullptr)
 {
-    
+    m_LevelNames.push_back("Level1.txt");
+    m_LevelNames.push_back("Level2.txt");
+}
+
+GameplayState::~GameplayState()
+{
+    delete m_pLevel;
+    m_pLevel = nullptr;
 }
 
 bool GameplayState::Load()
 {
-    return m_level.Load("Level2.txt", m_player.GetXPositionPtr(), m_player.GetYPositionPtr());
+    if (m_pLevel)
+    {
+        delete m_pLevel;
+        m_pLevel = nullptr;
+    }
+    m_pLevel = new Level();
+    
+    return m_pLevel->Load(m_LevelNames.at(m_currentLevel), m_player.GetXPositionPtr(), m_player.GetYPositionPtr());
 }
 
 void GameplayState::Enter()
@@ -39,7 +55,7 @@ void GameplayState::Enter()
 
 bool GameplayState::Update(bool processInput)
 {
-    if (processInput && !m_beatGame)
+    if (processInput && !m_beatLevel)
     {
         int input = _getch();
         int arrowInput = 0;
@@ -88,15 +104,24 @@ bool GameplayState::Update(bool processInput)
         }
     }
 
-    if (m_beatGame)
+    if (m_beatLevel)
     {
         ++m_skipFrameCount;
         if (m_skipFrameCount > kFramesToSkip)
         {
+            m_beatLevel = false;
             m_skipFrameCount = 0;
-            Utility::WriteHighScore(m_player.GetMoney());
-            AudioManager::GetInstance()->PlayWinSound();
-            m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Win);
+            ++m_currentLevel;
+            if (m_currentLevel == m_LevelNames.size())
+            {
+                Utility::WriteHighScore(m_player.GetMoney());
+                AudioManager::GetInstance()->PlayWinSound();
+                m_pOwner->LoadScene(StateMachineExampleGame::SceneName::Win);
+            }
+            else
+            {
+                Load();
+            }
         }
     }
     
@@ -106,7 +131,7 @@ bool GameplayState::Update(bool processInput)
 void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
 {
     bool isGameDone = false;
-    PlaceableActor* collidedActor = m_level.UpdateActors(newPlayerX, newPlayerY);
+    PlaceableActor* collidedActor = m_pLevel->UpdateActors(newPlayerX, newPlayerY);
     if (collidedActor != nullptr && collidedActor->IsActive())
     {
         
@@ -181,7 +206,7 @@ void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
                     assert (collidedGoal);
                     collidedGoal->Remove();
                     m_player.SetPosition(newPlayerX, newPlayerY);
-                    m_beatGame = true;
+                    m_beatLevel = true;
                     break;
                 }
             default:
@@ -189,11 +214,11 @@ void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
             }
         }
     }
-    else if (m_level.IsSpace(newPlayerX, newPlayerY)) // no collision
+    else if (m_pLevel->IsSpace(newPlayerX, newPlayerY)) // no collision
     {
         m_player.SetPosition(newPlayerX, newPlayerY);
     }
-    else if (m_level.IsWall(newPlayerX, newPlayerY))
+    else if (m_pLevel->IsWall(newPlayerX, newPlayerY))
     {
         // wall collision, do nothing
     }
@@ -204,7 +229,7 @@ void GameplayState::Draw()
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     system("cls");
 
-    m_level.Draw();
+    m_pLevel->Draw();
 
     // set cursor position for player
     COORD actorCursorPositon;
@@ -216,7 +241,7 @@ void GameplayState::Draw()
     // set cursor to end of level
     COORD currentCursorPositon;
     currentCursorPositon.X = 0;
-    currentCursorPositon.Y = m_level.GetHeight();
+    currentCursorPositon.Y = m_pLevel->GetHeight();
     SetConsoleCursorPosition(console, currentCursorPositon);
 
     DrawHUD(console);
@@ -226,7 +251,7 @@ void GameplayState::DrawHUD(const HANDLE& console)
 {
     cout << endl;
     //Top border
-    for (int i = 0; i < m_level.GetWidth(); i++)
+    for (int i = 0; i < m_pLevel->GetWidth(); i++)
     {
         cout << Level::WAL;
     }
@@ -253,7 +278,7 @@ void GameplayState::DrawHUD(const HANDLE& console)
     GetConsoleScreenBufferInfo(console, &csbi);
 
     COORD pos;
-    pos.X = m_level.GetWidth() - 1;
+    pos.X = m_pLevel->GetWidth() - 1;
     pos.Y = csbi.dwCursorPosition.Y;
     SetConsoleCursorPosition(console,pos);
 
@@ -261,7 +286,7 @@ void GameplayState::DrawHUD(const HANDLE& console)
     cout << endl;
 
     // bottom border
-    for (int i = 0; i < m_level.GetWidth(); i++)
+    for (int i = 0; i < m_pLevel->GetWidth(); i++)
     {
         cout << Level::WAL;
     }

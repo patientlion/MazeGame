@@ -3,6 +3,10 @@
 #include "Player.h"
 #include "Level.h"
 #include <windows.h>
+#include <vector>
+#include <string>
+
+using namespace std;
 
 class StateMachineExampleGame;
 
@@ -11,14 +15,18 @@ class GameplayState : public GameState
     StateMachineExampleGame* m_pOwner;
 
     Player m_player;
-    Level m_level;
+    Level* m_pLevel;
     
-    bool m_beatGame;
+    bool m_beatLevel;
     int m_skipFrameCount;
     static constexpr int kFramesToSkip = 2;
+
+    int m_currentLevel;
+    vector<string> m_LevelNames;
     
 public:
     GameplayState(StateMachineExampleGame* pOwner);
+    ~GameplayState();
     virtual void Enter() override;
     virtual bool Update(bool processInput = true) override;
     virtual void Draw() override;
