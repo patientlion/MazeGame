@@ -161,7 +161,9 @@ void GameplayState::HandleCollision(int newPlayerX, int newPlayerY)
                     collidedMoney->Remove();
                     m_player.AddMoney(collidedMoney->GetWorth());
                     m_player.SetPosition(newPlayerX, newPlayerY);
+                    break;
                 }
+                
             case ActorType::Key:
                 {
                     Key* collidedKey = dynamic_cast<Key*>(collidedActor);
