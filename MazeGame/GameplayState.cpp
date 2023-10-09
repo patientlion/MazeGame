@@ -28,6 +28,7 @@ GameplayState::GameplayState(StateMachineExampleGame* pOwner)
 {
     m_LevelNames.push_back("Level1.txt");
     m_LevelNames.push_back("Level2.txt");
+    m_LevelNames.push_back("Level2.txt");
 }
 
 GameplayState::~GameplayState()
